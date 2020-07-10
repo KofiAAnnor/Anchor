@@ -1,0 +1,25 @@
+{% extends "products/base.html"   %}
+
+{% block content %}
+{% load static %}
+
+<div class="jumbotron text-center" id="jumbo" style="background-color: #2f5386; width: 100%;">
+    <h1 class="display-4" style="color:white;">Profile</h1>
+    <hr style="background-color: white;">
+</div>
+<div style="align-content: center; text-align: center;"> 
+<h1>Welcome {{ user.get_username }}!</h1>
+<br><br>
+<a href="{% url 'logout' %}" class="btn" style="background-color: #2f5386; color: white;">logout</a>
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer style="position: fixed; width: 100%; margin-bottom: 0; bottom: 0;">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: #1d3557; color: white;">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/" style="color: white;"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "products/base.html"   %}
+
+{% block content %}
+{% load static %}
+
+<div class="jumbotron text-center" id="jumbo" style="background-color: #2f5386; width: 100%;">
+    <h1 class="display-4" style="color:white;">Welcome to Anchor!</h1>
+    <hr style="background-color: white;">   
+    <p style="color: white;">For all your online shopping needs</p>
+</div>
+<div class="card" style="width: 18rem; padding: 2%; margin: 40px;">
+    <img class="card-img-top" src="{% static 'products/mensimage.png' %}" alt="Card image cap">
+    <div class="card-body" style="text-align: center;">
+        <a href="{% url 'products:menspage_view' %}" class="btn" style="background-color: #2f5386; color: white;">Browse Men's</a>
+    </div>
+</div>
+<div class="card" style="width: 18rem; padding: 2%; margin: 40px;">
+    <img class="card-img-top" src="{% static 'products/womensimage.jpg' %}" alt="Card image cap">
+    <div class="card-body" style="text-align: center;">
+        <a href="{% url 'products:womenspage_view' %}" class="btn" style="background-color: #2f5386; color: white;">Browse Women's</a>
+    </div>
+</div>
+<div class="card" style="width: 18rem; padding: 2%; margin: 40px;">
+    <img class="card-img-top" src="{% static 'products/boysimage.jpg' %}" alt="Card image cap">
+    <div class="card-body" style="text-align: center;">
+        <a href="{% url 'products:boyspage_view' %}" class="btn" style="background-color: #2f5386; color: white;">Browse Boy's</a>
+    </div>
+</div>
+<div class="card" style="width: 18rem; padding: 2%; margin: 40px;">
+    <img class="card-img-top" src="{% static 'products/girlsimage.jpg' %}" alt="Card image cap">
+    <div class="card-body" style="text-align: center;">
+        <a href="{% url 'products:girlspage_view' %}" class="btn" style="background-color: #2f5386; color: white;">Browse Girl's</a>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+<footer>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: #1d3557; color: white;">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/" style="color: white;"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "products/base.html"   %}
+
+{% block content %}
+{% load static %}
+
+<div class="jumbotron text-center" id="jumbo" style="background-color: #2f5386; width: 100%;">
+    <h1 class="display-4" style="color:white;">Shopping Cart</h1>
+    <hr style="background-color: white;">
+    <h2 style="color: white;">Cart Total ({{ quantity }} items): ${{ total }}</h2>
+    <form action="{% url 'cart:checkoutpage' %}" method="POST">
+        {% csrf_token %}
+    <button type="submit" class="btn" style="background-color: rgb(214, 22, 22); color: white;">Checkout</button>
+    </form></div>
+{% for item in items %}
+<div class="card" style="width: 18rem; padding: 2%; margin: 20px;">
+    <img class="card-img-top" src="{{ item.product.image.url }}" alt="Card image cap">
+    <div class="card-body">
+        <b>
+            <h5 class="card-title">{{ item.product.name }}</h5>
+        </b>
+        <b>
+            <p class="card-text">Price: {{ item.product.price }}</p>
+        </b>
+        <b>
+            <p class="card-text">Quantity: {{ item.quantity }}</p>
+        </b>
+        <br>
+    </div>
+</div>
+{% empty %}
+<h1>There are no items in your cart at this time.</h1>
+
+{% endfor %}
+{% endblock %}
+{% block footer %}
+<footer>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: #1d3557; color: white;">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/" style="color: white;"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+{% endblock %}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>E-COMMERCE</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static '/products/base.css' %}">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-top" id="navbar">
+      <a id="brand-name" href="{% url 'products:productlistpage' %}">
+        <h3 class="navbar-brand">ANCHOR</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:menspage_view' %}">MENS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:womenspage_view' %}">WOMENS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:boyspage_view' %}">BOYS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:girlspage_view' %}">GIRLS</a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'accounts:profilepage' %}">
+              {% else %}
+              <a class="nav-link" href="{% url 'accounts:login' %}">
+                {% endif %}
+                <svg class="bi bi-person-lines-fill" width="1.5em" height="1.5em" viewBox="0 0 16 16"
+                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                </svg>
+              </a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'cart:cartpage' %}">
+              {% else %}
+              <a class="nav-link" href="{% url 'accounts:login' %}">
+
+                {% endif %}
+                <svg class="bi bi-cart3" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                    {% if user.is_authenticated %}
+                    <span class="badge" id="cart-count">{{quantity}}</span>
+                    {% endif %}
+
+                </svg>
+              </a>
+          </li>
+        </ul>
+        <!-- 
+        <form class="form-inline my-2 my-lg-0" style="width: 60%;">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+            style="width: 70%;">
+          <button class="btn my-2 my-sm-0 " type="submit" id="search-button">Search</button>
+        </form>
+        -->
+      </div>
+    </nav>
+  </header>
+
+  <main role="main" class="container">
+    <div class="alert alert-{{ catgeory }}" style="background-color:rgb(248, 248, 248);">
+      <div class="row" style="justify-content: center; align-items: center; ">
+        {% block content %}
+
+
+
+        {% endblock %}
+      </div>
+    </div>
+  </main>
+
+  {% block footer %}
+
+
+
+  {% endblock %}
+
+  <!--   
+  <footer style="position: sticky; width: 100%;">
+    <div class="footer-copyright text-center py-3" style="background-color: #1d3557; color: white;">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/" style="color: white;"> MDBootstrap.com</a>
+    </div>
+  </footer>
+-->
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

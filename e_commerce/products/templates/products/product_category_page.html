@@ -1,0 +1,41 @@
+{% extends "products/base.html"   %}
+
+{% block content %}
+{% load static %}
+
+<div class="jumbotron text-center" id="jumbo" style="background-color: #2f5386; width: 100%;">
+    <h1 class="display-4" style="color:white;">{{category}}</h1>
+    <hr style="background-color: white;">   
+</div>
+
+{% for product in all_products %}
+<div class="card" style="width: 18rem; padding: 2%; margin: 20px;">
+    <img class="card-img-top" src="{{ product.image.url }}" alt="Card image cap">
+    <div class="card-body">
+       <b> <h5 class="card-title">{{ product.name }}</h5></b>
+        <p class="card-text" style="font-style: italic;">{{ product.description }}</p>
+       <b><p class="card-text">${{ product.price }}</p></b>
+       <br>
+       {% if user.is_authenticated %}
+       <form action="{% url 'cart:addtocartpage' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" id="productid" name="productid" value="{{ product.id }}">
+        <button type="submit" class="btn" style="background-color: #2f5386; color: white;">Add to Cart</button>
+       </form>
+         {% else %} 
+         <a href="{% url 'accounts:login' %}" class="btn" style="background-color: #2f5386; color: white;">Add to Cart</a>
+       {% endif %}    
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+{% block footer %}
+<footer>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" style="background-color: #1d3557; color: white;">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/" style="color: white;"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+{% endblock %}
